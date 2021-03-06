@@ -71,11 +71,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let fourthNavigationController = UINavigationController.init(rootViewController: NotificationsViewController())
     let fifthNavigationController = UINavigationController.init(rootViewController: ProfileViewController())
     
-    firstNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
-    secondNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+    firstNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 0)
+    secondNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
     thirdNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 2)
-    fourthNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 3)
-    fifthNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 4)
+    fourthNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 3)
+    fifthNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 4)
     
     tabBarViewController.setViewControllers([firstNavigationController, secondNavigationController, thirdNavigationController, fourthNavigationController, fifthNavigationController], animated: true)
     
