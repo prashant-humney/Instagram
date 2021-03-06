@@ -17,7 +17,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-    guard let _ = (scene as? UIWindowScene) else { return }
+    guard let windowScene = (scene as? UIWindowScene) else { return }
+    window = UIWindow(windowScene: windowScene)
+    window?.makeKeyAndVisible()
+    
+    setupRootView()
+//    let navigationController = UINavigationController(rootViewController: HomeViewController())
+//
+//    navigationController.navigationBar.barTintColor = UIColor(red: 51/255, green: 90/255, blue: 149/255, alpha: 1.0)
+//    navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+//    // this seems so weird. Setting it to black sets the bar style to white 🤣
+//    //FYI: Use CMD + CTRL + SPACE to bring up emojis option.
+//    navigationController.navigationBar.barStyle = .black
+//
+//    window?.rootViewController = navigationController
+    
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {
@@ -46,6 +60,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Called as the scene transitions from the foreground to the background.
     // Use this method to save data, release shared resources, and store enough scene-specific state information
     // to restore the scene back to its current state.
+  }
+  
+  private func setupRootView() {
+    let tabBarViewController = UITabBarController.init()
+    
+    let firstNavigationController = UINavigationController.init(rootViewController: HomeViewController())
+    let secondNavigationController = UINavigationController.init(rootViewController: ExploreViewController())
+    let thirdNavigationController = UINavigationController.init(rootViewController: CameraViewController())
+    let fourthNavigationController = UINavigationController.init(rootViewController: NotificationsViewController())
+    let fifthNavigationController = UINavigationController.init(rootViewController: ProfileViewController())
+    
+    firstNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
+    secondNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+    thirdNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 2)
+    fourthNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 3)
+    fifthNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 4)
+    
+    tabBarViewController.setViewControllers([firstNavigationController, secondNavigationController, thirdNavigationController, fourthNavigationController, fifthNavigationController], animated: true)
+    
+    window?.rootViewController = tabBarViewController
   }
 
 
